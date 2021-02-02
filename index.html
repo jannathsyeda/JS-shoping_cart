@@ -25,11 +25,11 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button  class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button onclick="handlePhoneChange('phone',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="phone-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handlePhoneChange('phone',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5 id="phone-total">$1219</h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -43,9 +43,9 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button  onclick="handleProductChange(false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input id="caseCount" type="text" class="form-control text-center" value="1">
-                           <button onclick="handleProductChange(true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button  onclick="handleProductChange('case',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="case-count" type="text" class="form-control text-center" value="1">
+                           <button onclick="handleProductChange('case',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
 
                         </div>
                         <h5 id="case-total">$59</h5>
@@ -80,27 +80,33 @@
 
    <script>
 
-      function handleProductChange(IsIncrease){
-         const caseInput = document.getElementById('caseCount');
-         const caseCount = parseFloat(caseInput.value);
-         let caseNewCount= caseCount;
+//combined two product in one function
+   function handleProductChange(product,isIncrease){
 
-         if(IsIncrease==true){
-        caseNewCount= caseCount + 1;}
-         if(IsIncrease==false && caseCount > 0 ){
-          caseNewCount=caseCount - 1;
-         }
+       const productInput =document.getElementById(product + '-count');
+       const productCount=parseInt(productInput.value);
+       let productNewCount = productCount;
+       if(isIncrease==true){
+          productNewCount=productCount +1;
 
-         
-         caseInput.value = caseNewCount;
-         const caseTotal= caseNewCount * 59;
-         document.getElementById('case-total').innerText= '$' + caseTotal;
+       }
+       if(isIncrease==false && productCount>0){
+          productNewCount=productCount -1;
+       }
+       productInput.value=productNewCount;
+       let productTotal= 0;
+       if(product =='phone'){
+          productTotal=productNewCount*1219;
 
-      }
-         
+       }
+       if(product=='case'){
+          product=productNewCount*59;
+       }
+       documen.getElementById(product + '-total').innerText = '$' + productTotal;
+          }  
 
 
-      
+
    </script>
 </body>
 
