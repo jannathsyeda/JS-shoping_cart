@@ -67,3 +67,12 @@ function handleProductChange(IsIncrease){
           document.getElementById('phone-total').innerText = '$' + phoneTotal;
       }
 
+//calculate without inner function
+function CalculateTotal(){
+   const phoneInput = document.getElementById('phone-count');
+   const phoneCount= parseInt(phoneInput.value);
+   const caseInput =document.getElementById('case-count');
+   const caseCount =parseInt(caseInput.value);
+   const totalPrice= phoneCount*1219 + caseCount *59;
+   document.getElementById('total-price').innerText='$' + totalPrice;  
+}
